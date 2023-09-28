@@ -6,6 +6,11 @@ const sendOTP = (phoneNumber: string) => {
     Math.random() * 899999 + 100000
   ).toString();
 
+  console.log({
+    accountSID,
+    authToken
+  })
+
   const client = new Twilio(accountSID, authToken);
 
   client.messages.create({

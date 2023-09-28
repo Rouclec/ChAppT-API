@@ -1,16 +1,16 @@
-import { Schema, model, Document } from "mongoose";
+import { Schema, model, Document, Query } from "mongoose";
 import uniqueValidator from "mongoose-unique-validator";
-import { UserType } from "./user";
+import User, { UserType } from "./user";
+import { Message } from "./message";
 
 export interface Chat extends Document {
   _id?: string;
   name: string;
-  isGroupChat: {
-    type: boolean;
-    default: false;
-  };
-  users?: String[] | UserType[];
-  groupAdmins: String[] | UserType[];
+  isGroupChat: boolean;
+  description: string;
+  users?: string[] | UserType[];
+  groupAdmins: string[] | UserType[];
+  messages?: Message[]
 }
 
 const chatSchema = new Schema(

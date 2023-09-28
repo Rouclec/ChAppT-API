@@ -42,7 +42,7 @@ export const login = catchAsync(async (req, res, next) => {
     user = await User.findByIdAndUpdate(user?._id, {
       verificationCode,
       isVerified: false,
-    });
+    },{new: true});
   }
   return next(
     res.status(201).json({
@@ -113,7 +113,7 @@ export const verifyUser = catchAsync(async (req, res, next) => {
     isVerified: true,
     verificationCode: null,
     isLoggedInTo: ipAddress,
-  });
+  },{new: true});
 
   return next(
     res.status(200).json({
@@ -153,7 +153,7 @@ export const logout = catchAsync(async (req, res, next) => {
   const updatedUser = await User.findByIdAndUpdate(user?._id, {
     isLoggedInTo: null,
     isVerified: false,
-  });
+  },{new: true});
 
   return next(
     res.status(200).json({

@@ -106,7 +106,7 @@ export const deleteOne = (Model: any) =>
 export const updateOne = (Model: any, params: string[]) =>
   catchAsync(async (req, res, next) => {
     let body = {} as any;
-    params.forEach((param) => (body[param] = req.body[param] || null));
+    params.forEach((param) => (body[param] = req.body[param]));
     await DB();
     const updatedDoc = await Model.findByIdAndUpdate(req.params.id, body, {
       new: true,
